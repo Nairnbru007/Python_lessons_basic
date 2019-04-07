@@ -5,17 +5,66 @@
 # если такой корень вообще можно извлечь
 # Пример: Дано: [2, -5, 8, 9, -25, 25, 4]   Результат: [3, 5, 2]
 
+import math
+string_chisel=input("Введите целые числа списка через запятую. После ввода нажмите Enter"+'\n')
+string_chisel=string_chisel.replace("  ",' ').replace("  ",' ').replace(" ,",',').replace(" , ",',').replace(", ",',').replace(" ",'')
+list_chisel=string_chisel.split(',')
+list_chisel_new=list_chisel
+print("Исходный лист")
+print(list_chisel_new)
+for i in range(0,len(list_chisel)):
+    list_chisel_new[i] = int(list_chisel[i])
+list_sqrt=[]
+for i in range(0,len(list_chisel_new)):
+    if list_chisel_new[i]>=0:
+        if math.sqrt(list_chisel_new[i])*10%10==0:
+            list_sqrt.append(int(math.sqrt(list_chisel_new[i])))
+print(list_sqrt)
 
 # Задача-2: Дана дата в формате dd.mm.yyyy, например: 02.11.2013.
 # Ваша задача вывести дату в текстовом виде, например: второе ноября 2013 года.
 # Склонением пренебречь (2000 года, 2010 года)
-
+import datetime
+data=input("Введите дату"+'\n')
+data_split=data.split('.')
+try:
+    check_date=datetime.datetime(int(data_split[2]),int(data_split[1]),int(data_split[0]))
+except:
+    print("Нет такой даты!")
+    quit()
+else:
+    print("Дата подтверждена")
+mounth={
+    '01':'января',
+    '02':'февраля',
+    '03':'марта',
+    '04':'апреля',
+    '05':'мая',
+    '06':'июня',
+    '07':'июля',
+    '08':'авгуса',
+    '09':'сентября',
+    '10':'октября',
+    '11':'ноября',
+    '12':'декабря'}
+chislo=['первое', 'второе', 'третье', 'четвёртое','пятое', 'шестое', 'седьмое', 'восьмое','девятое', 'десятое',
+        'одиннадцатое', 'двенадцатое','тринадцатое', 'четырнадцатое', 'пятнадцатое', 'шестнадцатое','семнадцатое',
+        'восемнадцатое', 'девятнадцатое', 'двадцатое',
+        'двадцать первое', 'двадцать второе', 'двадцать третье','двадацать четвёртое', 'двадцать пятое',
+        'двадцать шестое','двадцать седьмое', 'двадцать восьмое', 'двадцать девятое','тридцатое', 'тридцать первое']
+data_new = chislo[int(data_split[0])-1] + " " + mounth[data_split[1]]+" " + data_split[2] + " года"
+print(data_new)
 
 # Задача-3: Напишите алгоритм, заполняющий список произвольными целыми числами
 # в диапазоне от -100 до 100. В списке должно быть n - элементов.
 # Подсказка:
 # для получения случайного числа используйте функцию randint() модуля random
-
+from random import randint
+n=input("Введите длинну списка"+'\n')
+rand_list=[]
+for i in range(0,int(n)-1):
+    rand_list.append(randint(-100, 100))
+print(rand_list)
 
 # Задача-4: Дан список, заполненный произвольными целыми числами.
 # Получите новый список, элементами которого будут: 
@@ -23,3 +72,25 @@
 # например, lst = [1, 2, 4, 5, 6, 2, 5, 2], нужно получить lst2 = [1, 2, 4, 5, 6]
 # б) элементы исходного списка, которые не имеют повторений:
 # например, lst = [1 , 2, 4, 5, 6, 2, 5, 2], нужно получить lst2 = [1, 4, 6]
+
+from random import randint
+n=input("Введите длинну списка"+'\n')
+rand_list=[]
+for i in range(0,int(n)-1):
+    rand_list.append(randint(-100,100))
+print("Исходный список")
+print(rand_list)
+# а) неповторяющиеся элементы исходного списка
+new_list=[]
+for element in rand_list:
+    if element not in new_list:
+        new_list.append(element)
+print("Неповторяющиеся элементы исходного списка")
+print(new_list)
+# б) элементы исходного списка, которые не имеют повторений:
+new_list1=[]
+for element in rand_list:
+    if rand_list.count(element)==1:
+        new_list1.append(element)
+print("Элементы исходного списка, которые не имеют повторений")
+print(new_list1)
